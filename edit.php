@@ -7,9 +7,9 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     exit;
 }
 
-if (isset($_POST['u_name']) && isset($_POST['u_email'])) {
+if (isset($_POST['u_name']) && isset($_POST['u_email']) && isset($_POST['u_city'])  && isset($_POST['u_age'])) {
 
-    $update_data = updateUser($conn, $_GET['id'], $_POST['u_name'], $_POST['u_email']);
+    $update_data = updateUser($conn, $_GET['id'], $_POST['u_name'], $_POST['u_email'], $_POST['u_city'], $_POST['u_age']);
 
     if ($update_data === true) {
         header('Location: index.php');
@@ -26,7 +26,7 @@ $theUser = fetchUser($conn, $_GET['id']);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple PHP CRUD Application</title>
+    <title>Assignment on CRUD Application</title>
     <link rel="stylesheet" href="./style.css">
 </head>
 
@@ -34,17 +34,22 @@ $theUser = fetchUser($conn, $_GET['id']);
 
     <div class="container">
         <header class="header">
-            <h1 class="title">PHP CRUD Application</h1>
-            <p>By <a href="//www.w3jar.com">w3jar.com</a></p>
+            <h1 class="title">PHP CRUD Design</h1>
+            <p>By Charity Nelima</p>
         </header>
         <div class="wrapper edit-wrapper">
             <div class="form">
                 <form method="POST">
                     <label for="userName">Full Name</label>
                     <input type="text" name="u_name" value="<?php echo htmlspecialchars($theUser['name']); ?>" id="userName" placeholder="Name" autocomplete="off" required>
+                    
                     <label for="userEmail">Email</label>
                     <input type="email" name="u_email" value="<?php echo htmlspecialchars($theUser['email']); ?>" id="userEmail" placeholder="Email" autocomplete="off" required>
-                    <?php if (isset($update_data) && $update_data !== true) {
+                    <label for="userCity">City</label>
+                    <input type="text" name="u_city" value="<?php echo htmlspecialchars($theUser['city']); ?>" id="userCity" placeholder="City" autocomplete="off" required>
+                    <label for="userAge">Age</label>
+                    <input type="text" name="u_age" value="<?php echo htmlspecialchars($theUser['age']); ?>" id="userAge" placeholder="Age" autocomplete="off" required>
+                     <?php if (isset($update_data) && $update_data !== true) {
                         echo '<p class="msg err-msg">' . $update_data . '</p>';
                     }
                     ?>

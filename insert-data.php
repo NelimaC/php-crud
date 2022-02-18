@@ -1,11 +1,13 @@
 <?php
-function insertData($conn, $u_name, $u_email)
+function insertData($conn, $u_name, $u_email, $u_city, $u_age)
 {
     $u_name = trim(mysqli_real_escape_string($conn, htmlspecialchars($u_name)));
     $u_email = trim(mysqli_real_escape_string($conn, htmlspecialchars($u_email)));
+    $u_city = trim(mysqli_real_escape_string($conn, htmlspecialchars($u_city)));
+    $u_age = trim(mysqli_real_escape_string($conn, htmlspecialchars($u_age)));
 
-    // IF NAME OR EMAIL IS EMPTY
-    if (empty($u_name) || empty($u_email)) {
+     // IF NAME age city and EMAIL IS EMPTY
+    if (empty($u_name) || empty($u_email) || empty($u_city) || empty($u_age)) {
         return 'Please fill all required fields.';
     }
     //IF EMAIL IS NOT VALID
@@ -19,7 +21,7 @@ function insertData($conn, $u_name, $u_email)
         }
 
         // INSERTING THE USER DATA
-        $query = mysqli_query($conn, "INSERT INTO `users`(`name`,`email`) VALUES('$u_name','$u_email')");
+        $query = mysqli_query($conn, "INSERT INTO `users`(`name`,`email`,`city`,`age`) VALUES('$u_name','$u_email','$u_city','$u_age')");
         // IF USER INSERTED
         if ($query) {
             return true;

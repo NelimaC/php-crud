@@ -10,6 +10,10 @@ body {
     padding: 50px;
     background-color: #f7f7f7;
     color: #222222;
+    background-image: url(images/alessio-soggetti-r1l1xVWi_Mo-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 input {
@@ -31,9 +35,30 @@ input {
 }
 
 .container .wrapper,
-.form form {
-    display: flex;
+.container{
+    background-image: url(images/alessio-soggetti-r1l1xVWi_Mo-unsplash.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+   
+    width: fit-content;
+    margin-top: 100px;
     flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.form form {
+    /* display: flex; */
+    flex-wrap: wrap;
+    /* justify-content: center;
+    /* align-items: center; */
+    width: 60%;
+    background-image: url(images/alessio-soggetti-r1l1xVWi_Mo-unsplash.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    align-items: center;
 }
 
 .container .wrapper {
@@ -49,7 +74,11 @@ input {
     border: 1px solid #cccccc;
     flex-basis: 40%;
     padding: 20px;
-    background-color: #f7f7f7;
+    background-image: url(images/alessio-soggetti-r1l1xVWi_Mo-unsplash.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
 }
 
 .form form label {
@@ -58,11 +87,15 @@ input {
 
 
 .form form [type="text"],
-.form form [type="email"] {
+.form form [type="email"],
+.form form [type="location"],
+.form form [type="text"]
+ {
     width: 100%;
+    align-items: center;
     padding: 10px;
     border: 1px solid #666666;
-    border-radius: 2px;
+    border-radius: 10px;
 }
 
 .form form [type="text"] {

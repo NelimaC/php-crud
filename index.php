@@ -4,8 +4,8 @@ require_once './fetch-data.php';
 require_once './insert-data.php';
 $all_user = array_reverse(fetchUsers($conn));
 
-if (isset($_POST['u_name']) && isset($_POST['u_email'])) {
-    $insert_data = insertData($conn, $_POST['u_name'], $_POST['u_email']);
+if (isset($_POST['u_name']) && isset($_POST['u_email']) &&  isset($_POST['u_city']) &&  isset($_POST['u_age']) ) {
+    $insert_data = insertData($conn, $_POST['u_name'], $_POST['u_email'],   $_POST['u_city'] ,   $_POST['u_age']);
     if ($insert_data === true) {
         header('Location: index.php');
         exit;
@@ -19,7 +19,7 @@ if (isset($_POST['u_name']) && isset($_POST['u_email'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple PHP CRUD Application By W3jar.Com</title>
+    <title>Assignment on crud application</title>
     <link rel="stylesheet" href="./style.css">
 </head>
 
@@ -27,8 +27,8 @@ if (isset($_POST['u_name']) && isset($_POST['u_email'])) {
 
     <div class="container">
         <header class="header">
-            <h1 class="title">PHP CRUD Application</h1>
-            <p>By <a href="//www.w3jar.com">w3jar.com</a></p>
+            <h1  style="font size: 25px; color: darkolivegreen;"class="title">Responsive CRUD Design</h1>
+            <p style="color: darkolivegreen;">By Charity Nelima</p>
         </header>
         <div class="wrapper">
             <div class="form">
@@ -37,6 +37,10 @@ if (isset($_POST['u_name']) && isset($_POST['u_email'])) {
                     <input type="text" name="u_name" id="userName" placeholder="Name" autocomplete="off" required>
                     <label for="userEmail">Email</label>
                     <input type="email" name="u_email" id="userEmail" placeholder="Email" autocomplete="off" required>
+                    <label for="usercity">City</label>
+                    <input type="location" name="u_city" id="usercity" placeholder="City" autocomplete="off" required>
+                    <label for ="userage">Age</label>
+                    <input type="text" name="u_age" id="userage" placeholder="Age" autocomplete="off" required>
                     <?php if (isset($insert_data) && $insert_data !== true) {
                         echo '<p class="msg err-msg">' . $insert_data . '</p>';
                     }
@@ -51,16 +55,23 @@ if (isset($_POST['u_name']) && isset($_POST['u_email'])) {
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>City</th>
+                                <th>Age</th>
                                 <th>Action</th>
                             </tr>
                             <?php foreach ($all_user as $user) :
                                 $id = $user['id'];
                                 $name = $user['name'];
                                 $email = $user['email'];
+                                $city = $user['city'];
+                                $age = $user['age'];
                             ?>
                                 <tr>
                                     <td><?php echo $name; ?></td>
                                     <td><?php echo $email; ?></td>
+                                    <td><?php echo $city;  ?></td>
+                                    <td><?php echo $age;  ?></td>
+
                                     <td>
                                         <a href="edit.php?id=<?php echo $id; ?>" class="edit">Edit</a>&nbsp;|
                                         <a href="delete.php?id=<?php echo $id; ?>" class="delete delete-action">Delete</a>
